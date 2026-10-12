@@ -1,0 +1,6 @@
+{
+  "name": "IA con Fede & Jack 3D Creator",
+  "description": "Página web de inscripción moderna para la clase gratuita online 'IA con Fede' y portafolio 3D interactivo de Jack.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
