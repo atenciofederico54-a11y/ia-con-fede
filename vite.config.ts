@@ -16,7 +16,7 @@ function uploadFlyerPlugin(): Plugin {
             try {
               const body = Buffer.concat(chunks).toString();
               const json = JSON.parse(body);
-              const base64Data = json.image.replace(/^data:image\/\w+;base64,/, '');
+              const base64Data = json.image.replace(/^data:image[/][A-Za-z0-9.+-]+;base64,/, '');
               const buffer = Buffer.from(base64Data, 'base64');
               const publicDir = path.resolve(__dirname, 'public');
               if (!fs.existsSync(publicDir)) {
@@ -39,20 +39,16 @@ function uploadFlyerPlugin(): Plugin {
   };
 }
 
-export default defineConfig(() => {
-  return {
-    plugins: [react(), tailwindcss(), uploadFlyerPlugin()],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+export default defineConfig(() => ({
+  base: '/ia-con-fede/',
+  plugins: [react(), tailwindcss(), uploadFlyerPlugin()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '.'),
     },
-    server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
-      hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
-    },
-  };
-});
+  },
+  server: {
+    hmr: process.env.DISABLE_HMR !== 'true',
+    watch: process.env.DISABLE_HMR === 'true' ? null : {},
+  },
+}));
