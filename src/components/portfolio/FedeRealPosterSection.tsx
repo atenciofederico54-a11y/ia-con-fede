@@ -5,7 +5,7 @@ import { Zap, CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FLYER_IMAGE = import.meta.env.BASE_URL + 'fede-flyer.jpeg';
+const FLYER_IMAGE = import.meta.env.BASE_URL + 'WhatsApp Image 2026-09-30 at 02.13.35.jpeg';
 
 export default function FedeRealPosterSection() {
   const sectionRef = useRef<HTMLElement>(null);
